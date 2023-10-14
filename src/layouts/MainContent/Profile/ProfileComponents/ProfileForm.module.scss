@@ -1,0 +1,19 @@
+.formWrapper {
+  margin-bottom: 20px;
+  .createPost {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .flexWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    .postArea {
+      resize: none;
+      border: 1px solid black;
+      width: 80%;
+      border-radius: 15px;
+      padding: 10px;
+    }
+  }
+}

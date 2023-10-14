@@ -1,0 +1,22 @@
+.flexWrapper {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+  .accountInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  img {
+    width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  span {
+    font-size: 18px;
+  }
+}
