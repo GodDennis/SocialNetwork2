@@ -73,6 +73,7 @@ h6 {
 }
 
 .App-wrapper {
+  height: 100%;
   font-size: 16px;
   display: grid;
   grid-template-rows: 60px 1fr;
@@ -83,12 +84,13 @@ h6 {
   grid-gap: 10px;
 }
 .container {
+  height: 100vh;
   max-width: 1200px;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   padding: 0 15px;
   margin: 0 auto;
 }
 a {
-  font-size: 16px;
+  font-size: 18px;
 }

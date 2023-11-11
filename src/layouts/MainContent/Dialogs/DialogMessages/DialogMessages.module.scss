@@ -1,0 +1,10 @@
+.DialogMessages {
+  width: 800px;
+  //   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .DialogInput {
+    margin-bottom: 20px;
+  }
+}
