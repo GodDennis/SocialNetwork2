@@ -1,15 +1,14 @@
 import { ChangeEvent, KeyboardEvent, useRef } from "react";
 import s from "./Input.module.scss";
-import { messageInfoPropsType } from "../../store";
 
 type InputPropsType = {
-  newMessageTxt: string;
-  className: string;
-  onKeyDownHandler: (value: string) => void;
-  callback: (value: string) => void;
-  placeholder?: string;
   type?: string;
   value: string;
+  className: string;
+  newMessageTxt: string;
+  placeholder?: string;
+  onKeyDownHandler: (value: string) => void;
+  callback: (value: string) => void;
 };
 
 export const Input = (props: InputPropsType) => {
@@ -24,13 +23,13 @@ export const Input = (props: InputPropsType) => {
   };
   return (
     <input
-      value={props.value}
-      onKeyDown={onKeyDownHandler}
       ref={inputRef}
-      className={`${s.input + " " + props.className}`}
-      type={props.type || "text"}
+      value={props.value}
       onChange={onChangeHandler}
+      type={props.type || "text"}
+      onKeyDown={onKeyDownHandler}
       placeholder={props.placeholder}
+      className={`${s.input + " " + props.className}`}
     />
   );
 };

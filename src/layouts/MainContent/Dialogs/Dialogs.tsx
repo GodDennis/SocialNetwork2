@@ -14,10 +14,10 @@ export const Dialogs = (props: DialogsPropsType) => {
     <div className={s.flexWrapper}>
       <DialogUsers dialogUsers={props.messagePage.dialogsUsers} />
       <DialogMessages
-        AddNewMessageText={props.AddNewMessageText}
         addNewMessage={props.addNewMessage}
-        newMessageTxt={props.messagePage.newMessageText}
+        AddNewMessageText={props.AddNewMessageText}
         messageInfo={props.messagePage.messageInfo}
+        newMessageTxt={props.messagePage.newMessageText}
       />
     </div>
   );

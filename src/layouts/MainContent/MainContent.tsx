@@ -7,11 +7,8 @@ import s from "./MainContent.module.scss";
 import DialogsContainer from "./Dialogs/DialogsContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
 
-type mainContentPropsType = {
-  store: any;
-};
 
-export const MainContent = (props: mainContentPropsType) => {
+export const MainContent = () => {
   return (
     <div className={s.container}>
       <Switch>

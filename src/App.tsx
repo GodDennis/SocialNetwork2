@@ -4,17 +4,13 @@ import Header from "./layouts/Header/Header";
 import { MainContent } from "./layouts/MainContent/MainContent";
 import { SideBar } from "./layouts/Sidebar/SideBar";
 
-type AppPropsType = {
-  store: any;
-};
-
-function App(props: AppPropsType) {
+function App() {
   return (
     <div className="container">
       <div className="App-wrapper">
         <Header />
         <SideBar />
-        <MainContent store={props.store} />
+        <MainContent />
       </div>
     </div>
   );
