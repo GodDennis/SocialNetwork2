@@ -1,27 +1,27 @@
-import { messageInfoPropsType, messagePagePropsType } from "../../../../store";
+import { messageInfoPropsType } from "../../../../store";
 import { Input } from "../../../../components/Input/Input";
 import { DialogMessagesArea } from "./DialogMessagesArea/DialogMessagesArea";
 import s from "./DialogMessages.module.scss";
-import { ChangeEvent } from "react";
 
 type DialogMessagesPropsType = {
   messageInfo: messageInfoPropsType[];
-  addPost: (value: string) => void;
-  addNewMessageTxt: (value: string) => void;
+  addNewMessage: () => void;
+  AddNewMessageText: (value: string) => void;
   newMessageTxt: string;
 };
 
 export const DialogMessages = (props: DialogMessagesPropsType) => {
-  const onKeyDownHandler = (value: string) => {
-    props.addPost(value);
+  const onKeyDownHandler = () => {
+    props.addNewMessage();
   };
   const onChangeHandler = (value: string) => {
-    props.addNewMessageTxt(value);
+    props.AddNewMessageText(value);
   };
   return (
     <div className={s.DialogMessages}>
       <DialogMessagesArea messageInfo={props.messageInfo} />
       <Input
+        value={props.newMessageTxt}
         newMessageTxt={props.newMessageTxt}
         onKeyDownHandler={onKeyDownHandler}
         className={s.DialogInput}

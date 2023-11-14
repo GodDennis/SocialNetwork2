@@ -7,7 +7,7 @@ type DialogMessagesArea = {
 
 export const DialogMessagesArea = (props: DialogMessagesArea) => {
   const messages = props.messageInfo.map((el) => (
-    <DialogMessage id={el.id} message={el.message} />
+    <DialogMessage key={el.id} id={el.id} message={el.message} />
   ));
   return <div>{messages}</div>;
 };

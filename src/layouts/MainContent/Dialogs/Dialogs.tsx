@@ -5,20 +5,19 @@ import s from "./Dialogs.module.scss";
 
 type DialogsPropsType = {
   messagePage: messagePagePropsType;
-  addPost: (value: string) => void;
-  addNewMessageTxt: (value: string) => void;
+  addNewMessage: () => void;
+  AddNewMessageText: (value: string) => void;
 };
 
 export const Dialogs = (props: DialogsPropsType) => {
-  console.log(props);
   return (
     <div className={s.flexWrapper}>
       <DialogUsers dialogUsers={props.messagePage.dialogsUsers} />
       <DialogMessages
-        addPost={props.addPost}
+        AddNewMessageText={props.AddNewMessageText}
+        addNewMessage={props.addNewMessage}
         newMessageTxt={props.messagePage.newMessageText}
         messageInfo={props.messagePage.messageInfo}
-        addNewMessageTxt={props.addNewMessageTxt}
       />
     </div>
   );

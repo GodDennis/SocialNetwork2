@@ -1,15 +1,14 @@
 import { Route, Switch } from "react-router-dom";
 import { Profile } from "./Profile/Profile";
 import { Users } from "./Users/Users";
-
 import { Music } from "./Music/Music";
 import { Settings } from "./Settings/Settings";
 import s from "./MainContent.module.scss";
-import { StorePropsType, store } from "../../store";
-import { Dialogs } from "./Dialogs/Dialogs";
+import DialogsContainer from "./Dialogs/DialogsContainer";
+import ProfileContainer from "./Profile/ProfileContainer";
 
 type mainContentPropsType = {
-  store: StorePropsType;
+  store: any;
 };
 
 export const MainContent = (props: mainContentPropsType) => {
@@ -17,17 +16,10 @@ export const MainContent = (props: mainContentPropsType) => {
     <div className={s.container}>
       <Switch>
         <Route exact path={"/"}>
-          <Profile
-            profileInfo={props.store.getState().profilePage.profileInfo}
-            posts={props.store.getState().profilePage.posts}
-          />
+          <ProfileContainer />
         </Route>
         <Route exact path={"/message"}>
-          <Dialogs
-            messagePage={props.store.getState().messagePage}
-            addPost={props.store.addPost.bind(store)}
-            addNewMessageTxt={props.store.addNewMessageTxt.bind(store)}
-          />
+          <DialogsContainer />
         </Route>
         <Route exact path={"/users"}>
           <Users />

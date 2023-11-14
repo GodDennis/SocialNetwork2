@@ -9,6 +9,7 @@ type InputPropsType = {
   callback: (value: string) => void;
   placeholder?: string;
   type?: string;
+  value: string;
 };
 
 export const Input = (props: InputPropsType) => {
@@ -23,6 +24,7 @@ export const Input = (props: InputPropsType) => {
   };
   return (
     <input
+      value={props.value}
       onKeyDown={onKeyDownHandler}
       ref={inputRef}
       className={`${s.input + " " + props.className}`}

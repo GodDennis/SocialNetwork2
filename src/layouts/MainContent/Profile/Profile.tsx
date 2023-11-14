@@ -1,15 +1,16 @@
 import { PostPropsType, ProfileInfoPropsType } from "../../../store";
-import { Btn } from "../../../components/Btn/Btn";
-import s from "./Profile.module.scss";
 import { BackgroundImage } from "./ProfileComponents/BackgroundImage";
 import { MappedPost } from "./ProfileComponents/MappedPost";
-import { Post } from "./ProfileComponents/Post";
 import { ProfileForm } from "./ProfileComponents/ProfileForm";
 import { ProfileInfo } from "./ProfileComponents/ProfileInfo";
+import s from "./Profile.module.scss";
 
 type ProfilePropsTyep = {
   profileInfo: ProfileInfoPropsType;
   posts: PostPropsType[];
+  newPostText: string;
+  addNewPost: () => void;
+  addNewPostText: (value: string) => void;
 };
 
 export const Profile = (props: ProfilePropsTyep) => {
@@ -24,7 +25,11 @@ export const Profile = (props: ProfilePropsTyep) => {
         education={props.profileInfo.education}
         webSite={props.profileInfo.webSite}
       />
-      <ProfileForm />
+      <ProfileForm
+        newPostText={props.newPostText}
+        addNewPost={props.addNewPost}
+        addNewPostText={props.addNewPostText}
+      />
       <MappedPost posts={props.posts} />
     </div>
   );

@@ -15,7 +15,7 @@ type PostPropsType = {
 
 export function Post(props: PostPropsType) {
   return (
-    <div key={props.id} className={s.post}>
+    <div  className={s.post}>
       <div className={s.postHeader}>
         <div className={s.avatar}>
           <img className={s.avatar__item} src={props.src} alt="" />

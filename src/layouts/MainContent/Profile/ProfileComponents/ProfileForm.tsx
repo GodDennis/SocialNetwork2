@@ -1,13 +1,19 @@
-import { log } from "console";
 import { Btn } from "../../../../components/Btn/Btn";
 import s from "./ProfileForm.module.scss";
-import React, { useRef } from "react";
 
-export const ProfileForm = () => {
-  function loger() {
-    console.log(area.current?.value);
+type ProfileFormPropsType = {
+  addNewPost: () => void;
+  addNewPostText: (value: string) => void;
+  newPostText: string;
+};
+
+export const ProfileForm = (props: ProfileFormPropsType) => {
+  function onChangeHandler(value: string) {
+    props.addNewPostText(value);
   }
-  let area = useRef<HTMLTextAreaElement | null>(null);
+  function onClickHandler() {
+    props.addNewPost();
+  }
 
   return (
     <div className={s.formWrapper}>
@@ -15,12 +21,16 @@ export const ProfileForm = () => {
         <h2 className={s.createPost}>My posts</h2>
         <div className={s.flexWrapper}>
           <textarea
-            ref={area}
+            value={props.newPostText}
             className={s.postArea}
+            onChange={(e) => {
+              onChangeHandler(e.currentTarget.value);
+            }}
             placeholder="Enter you text"
             name=""
-            id=""></textarea>
-          <Btn callback={loger} type="button" name="Send" />
+            id=""
+          />
+          <Btn callback={onClickHandler} type="button" name="Send" />
         </div>
       </form>
     </div>

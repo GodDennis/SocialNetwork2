@@ -11,6 +11,7 @@ export const MappedPost = (props: MappedPostPropsType) => {
       {props.posts.map((el) => {
         return (
           <Post
+            key={el.id}
             src={el.src}
             fullName={el.fullName}
             post={el.post}
