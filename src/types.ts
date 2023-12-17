@@ -25,19 +25,30 @@ export type dialogsUsersPropsType = {
 };
 
 export type profilePagePropsType = {
-  profileInfo: ProfileInfoPropsType;
+  profileInfo: profileType;
   posts: PostPropsType[];
   newPostText: string;
 };
 
-export type ProfileInfoPropsType = {
-  src: string;
-  birthday: string;
-  fullName: string;
-  country: string;
-  education: string;
-  webSite: string;
+export type profileType = {
+  aboutMe: null | string;
+  contacts: {
+    facebook: null | string;
+    github: null | string;
+    instagram: null | string;
+    mainLink: null | string;
+    twitter: null | string;
+    vk: null | string;
+    website: null | string;
+    youtube: null | string;
+  };
+  fullName: null | string;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: null | string;
+  photos: { small: null | string; large: null | string };
+  userId: null | number;
 };
+
 export type PostPropsType = {
   id: string;
   src: string;

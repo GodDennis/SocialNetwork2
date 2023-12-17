@@ -1,0 +1,57 @@
+.flex__container {
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #dce1e6;
+  position: relative;
+}
+
+.cardInfo {
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  justify-content: space-between;
+  button {
+    padding: 10px;
+  }
+}
+
+.avatar {
+  display: block;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.name {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 5px 0 10px 0;
+}
+.description {
+  display: inline-block;
+  text-wrap: wrap;
+  margin: 0 0 15px 0;
+  cursor: pointer;
+  color: #626d7a;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.follow {
+  display: block;
+  color: #626d7a;
+  font-size: 16px;
+  background-color: #5182bb;
+  color: #fff;
+  width: 100px;
+  height: 28px;
+  border-radius: 6px;
+}

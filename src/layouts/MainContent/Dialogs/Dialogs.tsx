@@ -1,4 +1,4 @@
-import { messagePagePropsType } from "../../../store";
+import { messagePagePropsType } from "../../../types";
 import { DialogMessages } from "./DialogMessages/DialogMessages";
 import { DialogUsers } from "./DialogUsers/DialogUsers";
 import s from "./Dialogs.module.scss";

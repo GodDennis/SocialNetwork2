@@ -1,0 +1,39 @@
+.background {
+  position: relative;
+  --profile-gradient-cover-color: rgba(31, 21, 18, 0.32);
+  background-color: #ffffff;
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(transparent),
+      to(var(--profile-gradient-cover-color))
+    ),
+    -webkit-gradient(linear, right top, left top, from(transparent), to(var(--profile-gradient-cover-color)));
+  width: 100%;
+  height: 255px;
+  background-color: aliceblue;
+}
+.change {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  border-radius: 5px;
+  width: 185px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0.36);
+  color: #fff;
+  font-weight: bold;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.32);
+  }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}
+.pen {
+  margin: 0 10px 0 -10px;
+  width: 20px;
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}

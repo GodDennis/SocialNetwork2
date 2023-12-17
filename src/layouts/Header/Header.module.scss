@@ -1,7 +1,21 @@
-.container {
-  grid-area: a;
+.header {
   width: 100%;
-  img {
-    width: 100px;
+  height: 50px;
+  background-color: #fff;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    img {
+      margin: 12.5px 0;
+      width: 50px;
+      background-color: inherit;
+    }
+    span {
+      color: black;
+      vertical-align: middle;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 50px;
+    }
   }
 }

@@ -1,0 +1,31 @@
+
+.img {
+  color: #447bba;
+  width: 20px;
+  margin-right: 10px;
+}
+.item {
+  padding: 0 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: flex;
+  width: 164px;
+  height: 30px;
+  &:hover {
+    background-color: #d5d7dd;
+  }
+}
+.link {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  vertical-align: center;
+  line-height: 30px;
+  font-size: 13px;
+  color: #000000;
+}

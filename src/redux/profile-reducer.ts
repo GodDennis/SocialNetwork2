@@ -1,14 +1,24 @@
 import { v1 } from "uuid";
-import { profilePagePropsType } from "../store";
+import { profilePagePropsType, profileType } from "../types";
 
 const profilePage = {
   profileInfo: {
-    src: "https://sun9-75.userapi.com/impg/teTw8UF6zBSgt_IvJzVz-wvsKQwNWQupF25QUg/jl790zKnAaM.jpg?size=1200x1600&quality=96&sign=278ffd6e454d0a67972d1ef3387635be&type=album",
-    birthday: "26 Feb",
-    fullName: "Dennis P",
-    country: "Belarus, Minsk",
-    education: "BNTU",
-    webSite: "https://github.com/GodDennis",
+    aboutMe: null,
+    contacts: {
+      facebook: null,
+      github: null,
+      instagram: null,
+      mainLink: null,
+      twitter: null,
+      vk: null,
+      website: null,
+      youtube: null,
+    },
+    fullName: null,
+    lookingForAJob: false,
+    lookingForAJobDescription: null,
+    photos: { small: null, large: null },
+    userId: null,
   },
   posts: [
     {
@@ -47,22 +57,38 @@ export const postReducer = (
       };
       return {
         ...state,
-        posts: [...state.posts, newPost],
+        posts: [newPost, ...state.posts],
         newPostText: "",
       };
     }
+
     case "ADD-NEW-POST-TEXT": {
       return { ...state, newPostText: action.value };
+    }
+    case "SET-PROFILE-INFO": {
+      return { ...state, profileInfo: action.data };
+    }
+    case "SET-PROFILE-ID": {
+      return {
+        ...state,
+        profileInfo: { ...state.profileInfo, userId: action.ID },
+      };
     }
     default:
       return { ...state };
   }
 };
 
-export type ActionPostReducerTypes = AddPost | AddNewPostText;
+export type ActionPostReducerTypes =
+  | AddPost
+  | AddNewPostText
+  | SetProfileInfo
+  | SetProfileID;
 
 type AddPost = ReturnType<typeof AddPostAC>;
 type AddNewPostText = ReturnType<typeof AddNewPostTextAC>;
+type SetProfileInfo = ReturnType<typeof SetProfileInfoAC>;
+type SetProfileID = ReturnType<typeof SetProfileIdAC>;
 
 export const AddPostAC = () => {
   return {
@@ -73,5 +99,17 @@ export const AddNewPostTextAC = (value: string) => {
   return {
     type: "ADD-NEW-POST-TEXT",
     value,
+  } as const;
+};
+export const SetProfileInfoAC = (data: profileType) => {
+  return {
+    type: "SET-PROFILE-INFO",
+    data,
+  } as const;
+};
+export const SetProfileIdAC = (ID: number) => {
+  return {
+    type: "SET-PROFILE-ID",
+    ID,
   } as const;
 };

@@ -1,14 +1,16 @@
-import { PostPropsType } from "../../../../store";
+import { memo } from "react";
+import { useSelector } from "react-redux";
+import { PostPropsType } from "../../../../types";
 import { Post } from "./Post";
+import { RootStoreType } from "../../../../redux/redux";
 
-type MappedPostPropsType = {
-  posts: PostPropsType[];
-};
-
-export const MappedPost = (props: MappedPostPropsType) => {
+export const MappedPost = memo(() => {
+  const posts = useSelector<RootStoreType, PostPropsType[]>(
+    (state) => state.profilePage.posts
+  );
   return (
     <>
-      {props.posts.map((el) => {
+      {posts.map((el) => {
         return (
           <Post
             key={el.id}
@@ -22,4 +24,4 @@ export const MappedPost = (props: MappedPostPropsType) => {
       })}
     </>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { messageInfoPropsType } from "../../../../../store";
+import { messageInfoPropsType } from "../../../../../types";
 import { DialogMessage } from "./DialogMessage/DialogMessage";
 
 type DialogMessagesArea = {

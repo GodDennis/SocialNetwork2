@@ -1,36 +1,28 @@
-import { PostPropsType, ProfileInfoPropsType } from "../../../store";
-import { BackgroundImage } from "./ProfileComponents/BackgroundImage";
+import { ProfileHeader } from "./ProfileComponents/ProfileHeader/ProfileHeader";
 import { MappedPost } from "./ProfileComponents/MappedPost";
 import { ProfileForm } from "./ProfileComponents/ProfileForm";
-import { ProfileInfo } from "./ProfileComponents/ProfileInfo";
 import s from "./Profile.module.scss";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { SetProfileInfoAC } from "../../../redux/profile-reducer";
+import { useParams } from "react-router-dom";
+import { getProfileInfo } from "../../../dal/api";
 
-type ProfilePropsTyep = {
-  profileInfo: ProfileInfoPropsType;
-  posts: PostPropsType[];
-  newPostText: string;
-  addNewPost: () => void;
-  addNewPostText: (value: string) => void;
-};
+export const Profile = () => {
+  let { userID } = useParams<{ userID: string }>();
 
-export const Profile = (props: ProfilePropsTyep) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getProfileInfo(userID).then((res) => {
+      dispatch(SetProfileInfoAC(res.data));
+    });
+  }, [userID]);
+
   return (
     <div>
-      <BackgroundImage />
-      <ProfileInfo
-        src={props.profileInfo.src}
-        birthday={props.profileInfo.birthday}
-        fullName={props.profileInfo.fullName}
-        country={props.profileInfo.country}
-        education={props.profileInfo.education}
-        webSite={props.profileInfo.webSite}
-      />
-      <ProfileForm
-        newPostText={props.newPostText}
-        addNewPost={props.addNewPost}
-        addNewPostText={props.addNewPostText}
-      />
-      <MappedPost posts={props.posts} />
+      <ProfileHeader />
+      <ProfileForm />
+      <MappedPost />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import {
   AddNewMessageTextAC,
   ActionMessageReducerTypes,
 } from "../../../redux/message-reducer";
-import { statePropsType } from "../../../store";
+import { statePropsType } from "../../../types";
 import { Dialogs } from "./Dialogs";
 
 const MapStateToProps = (state: statePropsType) => {

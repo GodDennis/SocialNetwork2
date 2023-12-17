@@ -2,7 +2,7 @@ import {
   dialogsUsersPropsType,
   messageInfoPropsType,
   messagePagePropsType,
-} from "../../../../store";
+} from "../../../../types";
 import { DialogUser } from "./DialogUser/DialogUser";
 
 type DialogUsersPropsType = {

@@ -10,9 +10,8 @@ export const Btn: React.FC<BtnType> = (props) => {
     props.callback();
   };
   return (
-
-      <button className={s.btn} onClick={handler} type={props.type}>
-        {props.name}
-      </button>
+    <button className={s.btn} onClick={handler} type={props.type}>
+      {props.name}
+    </button>
   );
 };

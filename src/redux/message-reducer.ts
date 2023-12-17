@@ -1,4 +1,4 @@
-import { messagePagePropsType } from "../store";
+import { messagePagePropsType } from "../types";
 import { v1 } from "uuid";
 
 const messagePage = {

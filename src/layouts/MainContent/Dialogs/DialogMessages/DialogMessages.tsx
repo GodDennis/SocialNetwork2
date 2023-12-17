@@ -1,4 +1,4 @@
-import { messageInfoPropsType } from "../../../../store";
+import { messageInfoPropsType } from "../../../../types";
 import { Input } from "../../../../components/Input/Input";
 import { DialogMessagesArea } from "./DialogMessagesArea/DialogMessagesArea";
 import s from "./DialogMessages.module.scss";

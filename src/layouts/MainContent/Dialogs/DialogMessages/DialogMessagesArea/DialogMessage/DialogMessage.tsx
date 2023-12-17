@@ -1,4 +1,4 @@
-import { messageInfoPropsType } from "../../../../../../store";
+import { messageInfoPropsType } from "../../../../../../types";
 
 export const DialogMessage = (props: messageInfoPropsType) => {
   return (
