@@ -3,26 +3,24 @@ import { MappedPost } from "./ProfileComponents/MappedPost";
 import { ProfileForm } from "./ProfileComponents/ProfileForm";
 import s from "./Profile.module.scss";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { SetProfileInfoAC } from "../../../redux/profile-reducer";
+import { SetProfileTC } from "../../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
-import { getProfileInfo } from "../../../dal/api";
+import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../redux/redux";
 
 export const Profile = () => {
-  let { userID } = useParams<{ userID: string }>();
+    let { userID } = useParams<{ userID: string }>();
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    getProfileInfo(userID).then((res) => {
-      dispatch(SetProfileInfoAC(res.data));
-    });
-  }, [userID]);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        userID && dispatch(SetProfileTC(userID));
+    }, [userID]);
 
-  return (
-    <div>
-      <ProfileHeader />
-      <ProfileForm />
-      <MappedPost />
-    </div>
-  );
+    return (
+        <div>
+            <ProfileHeader />
+            <ProfileForm />
+            <MappedPost />
+        </div>
+    );
 };

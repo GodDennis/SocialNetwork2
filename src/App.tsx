@@ -1,34 +1,109 @@
-import React from "react";
 import "./App.css";
 import Header from "./layouts/Header/Header";
-import { MainContent } from "./layouts/MainContent/MainContent";
 import { SideBar } from "./layouts/Sidebar/SideBar";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { SetProfileIdAC } from "./redux/profile-reducer";
-import { SetProfileAuthIDAC } from "./redux/auth-reducer";
-import { useParams } from "react-router-dom";
-import { getAuth } from "./dal/api";
+import { useEffect } from "react";
+import { SetProfileAuthIDTC } from "./redux/auth-reducer";
+import { RootStoreType, useAppDispatch } from "./redux/redux";
+import { useSelector } from "react-redux";
+import Registration from "./layouts/Registration/Registration";
+import { Navigate, Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import { initializedTC } from "./redux/app-reducer";
+import { Profile } from "./layouts/MainContent/Profile/Profile";
+import DialogsContainer from "./layouts/MainContent/Dialogs/DialogsContainer";
+import { Users } from "./layouts/MainContent/Users/Users";
+import { Music } from "./layouts/MainContent/Music/Music";
+import { Settings } from "./layouts/MainContent/Photo/Photo";
 
-function App() {
-  
-  const dispatch = useDispatch();
-  useEffect(() => {
-    getAuth().then((res) => {
-      dispatch(SetProfileAuthIDAC(res.data.data));
-    });
-  }, []);
+export function App() {
+    const isAuth = useSelector<RootStoreType, boolean>(state => state.auth.isAuth);
+    const userID = useSelector<RootStoreType, number | null>(state => state.auth.id);
+    const initialized = useSelector<RootStoreType, boolean>(state => state.app.initialized);
 
-  return (
-    <div>
-      <Header />
-      <div className="section-wrapper">
-        <SideBar />
-        <MainContent />
-      </div>
-    </div>
-  );
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(initializedTC());
+    }, [isAuth]);
+    if (!initialized) {
+        return <div>LOADING</div>;
+    } else {
+        return (
+            <Routes>
+                <Route
+                    path='/'
+                    element={
+                        isAuth ? (
+                            <div>
+                                <Header />
+                                <div className='section-wrapper'>
+                                    <SideBar />
+                                    <Outlet />
+                                </div>
+                            </div>
+                        ) : (
+                            <Navigate to={"/login"} />
+                        )
+                    }>
+                    {userID && (
+                        <Route
+                            path='/'
+                            element={<Navigate to={"/profile/" + userID} />}
+                        />
+                    )}
+                    <Route
+                        path={`/profile/:userID?`}
+                        element={<Profile />}
+                    />
+                    <Route
+                        path={"/message"}
+                        element={<DialogsContainer />}
+                    />
+                    <Route
+                        path={"/users"}
+                        element={<Users />}
+                    />
+                    <Route
+                        path={"/music"}
+                        element={<Music />}
+                    />
+                    <Route
+                        path={"/photo"}
+                        element={<Settings />}
+                    />
+                </Route>
+
+                <Route
+                    path='/login'
+                    element={isAuth ? <Navigate to={"/"} /> : <Registration />}
+                />
+            </Routes>
+        );
+    }
 }
 
-export default App;
+{
+    /* <Route
+path='/'
+element={
+    isAuth ? <Navigate to={`/profile/${userID}`} /> : <Navigate to={`/login`} />
+}
+/>
+<Route
+path='/*'
+element={
+    <div>
+        <Header />
+        <div className='section-wrapper'>
+            <SideBar />
+            <MainContent />
+        </div>
+    </div>
+}
+/>
+
+<Route
+path='/login'
+element={isAuth ? <Navigate to={"/"} /> : <Registration />}
+/> */
+}
+
+// isAuth? <Outlet?> :  Navigate to loign

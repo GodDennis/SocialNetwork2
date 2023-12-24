@@ -1,0 +1,82 @@
+.wrapper {
+  margin: 30px 30px;
+  border-radius: 12px;
+  width: 320px;
+  background-color: #fff;
+  padding: 32px 24px;
+}
+.form {
+  width: 272px;
+}
+.subtitle {
+  line-height: 26px;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  font-size: 22px;
+  text-align: center;
+}
+.logo {
+  display: block;
+  margin: 16px auto 20px;
+  width: 100px;
+}
+.inp {
+  font-size: 14px;
+  width: 100%;
+  height: 36px;
+  padding: 10px;
+  border-radius: 8px;
+  appearance: auto;
+  background-color: rgb(240, 242, 245);
+  border-bottom-width: 1px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 0 0 16px 0;
+  &:focus {
+    border-color: #0077ff;
+  }
+}
+.loggin {
+  color: black;
+}
+.password {
+  color: black;
+}
+
+.enter {
+  font-size: 14px;
+  line-height: 14px;
+  margin-top: 4px;
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #0077ff;
+}
+.create {
+  font-size: 14px;
+  line-height: 14px;
+  margin: 16px 0;
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #4bb34b;
+}
+
+.text {
+  width: 100%;
+  text-align: center;
+  color: #99a2ad;
+  font-size: 14px;
+}
+.link {
+  display: block;
+  text-align: center;
+  color: #626d7a;
+  font-size: 14px;
+}

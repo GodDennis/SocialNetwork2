@@ -56,7 +56,7 @@ const messagePage = {
 
 export const meessageReducer = (
   state: messagePagePropsType = messagePage,
-  action: ActionMessageReducerTypes
+  action: MessageActionTypes
 ) => {
   switch (action.type) {
     case "ADD-MESSAGE": {
@@ -78,7 +78,7 @@ export const meessageReducer = (
   }
 };
 
-export type ActionMessageReducerTypes = AddMessage | AddNewMessageText;
+export type MessageActionTypes = AddMessage | AddNewMessageText;
 
 type AddMessage = ReturnType<typeof AddMessageAC>;
 type AddNewMessageText = ReturnType<typeof AddNewMessageTextAC>;

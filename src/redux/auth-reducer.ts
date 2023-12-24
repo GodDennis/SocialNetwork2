@@ -1,32 +1,61 @@
-export const authReducer = (
-  state: authReducerStateType = { email: null, id: 0, login: null },
+import { Dispatch } from "redux";
+import { API } from "../dal/api";
 
-  action: ActionAuthReducerTypes
+export const authReducer = (
+    state: authReducerStateType = { email: null, id: 0, login: null, isAuth: false },
+
+    action: AuthActionTypes
 ) => {
-  switch (action.type) {
-    case "SET-AUTH-ID": {
-      {
-        return action.Auth;
-      }
+    switch (action.type) {
+        case "SET-AUTH-ID": {
+            {
+                return { ...state, ...action.Auth };
+            }
+        }
+        case "SET-IS-AUTH": {
+            return {
+                ...state,
+                isAuth: action.isAuth,
+            };
+        }
+        default:
+            return state;
     }
-    default:
-      return state;
-  }
 };
 
-export type ActionAuthReducerTypes = SetProfileAuthID;
+export const SetProfileAuthIDAC = (Auth: Omit<authReducerStateType, "isAuth">) => {
+    return {
+        type: "SET-AUTH-ID",
+        Auth,
+    } as const;
+};
 
-type SetProfileAuthID = ReturnType<typeof SetProfileAuthIDAC>;
+const SetIsAuthAC = (isAuth: boolean) => {
+    return {
+        type: "SET-IS-AUTH",
+        isAuth,
+    } as const;
+};
 
-export const SetProfileAuthIDAC = (Auth: authReducerStateType) => {
-  return {
-    type: "SET-AUTH-ID",
-    Auth,
-  } as const;
+export const SetProfileAuthIDTC = () => async (dispatch: Dispatch) => {
+    const res = await API.getAuth();
+    if (res.data.resultCode === 0) {
+        dispatch(SetIsAuthAC(true));
+        dispatch(SetProfileAuthIDAC(res.data.data));
+    } else {
+        dispatch(SetIsAuthAC(false));
+    }
+    return res;
 };
 
 type authReducerStateType = {
-  email: string | null;
-  id: number | null;
-  login: string | null;
+    email: string | null;
+    id: number | null;
+    login: string | null;
+    isAuth: boolean;
 };
+
+type SetProfileAuthID = ReturnType<typeof SetProfileAuthIDAC>;
+type SetIsAuth = ReturnType<typeof SetIsAuthAC>;
+
+export type AuthActionTypes = SetProfileAuthID | SetIsAuth;

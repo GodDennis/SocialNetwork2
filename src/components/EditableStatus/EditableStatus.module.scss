@@ -1,0 +1,23 @@
+.text {
+    margin: 0 15px 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 14px;
+    vertical-align: middle;
+    color: #626d7a;
+    user-select: none;
+    min-width: 300px;
+    &:hover {
+        border-bottom: 1px solid #626d7a;
+    }
+}
+.textInput {
+    border-bottom: 1px solid #626d7a;
+}
+
+.aboutMe {
+    min-width: 160px;
+    width: 100%;
+    height: 14px;
+    line-height: 14px;
+}
