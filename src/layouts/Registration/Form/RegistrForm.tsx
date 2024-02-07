@@ -37,6 +37,7 @@ function RegistrForm() {
                     </div>
                     <div>
                         <b>Пароль для входа:goddennis</b>
+
                         <input
                             {...register("password", {
                                 required: "This is required",
