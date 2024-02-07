@@ -3,6 +3,7 @@ type BtnType = {
     type: "button" | "submit" | "reset" | undefined;
     name: string;
     disabled?: boolean;
+    className?: string;
     callback: () => void;
 };
 
@@ -13,7 +14,7 @@ export const Btn: React.FC<BtnType> = props => {
     return (
         <button
             disabled={props.disabled}
-            className={s.btn}
+            className={s.btn + " " + props.className}
             onClick={handler}
             type={props.type}>
             {props.name}

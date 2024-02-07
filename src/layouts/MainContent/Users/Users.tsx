@@ -20,5 +20,9 @@ export const Users = () => {
             />
         );
     });
-    return <div className={s.users}>{item}</div>;
+    return (
+        <div className={s.container}>
+            <div className={s.users}>{item}</div>
+        </div>
+    );
 };

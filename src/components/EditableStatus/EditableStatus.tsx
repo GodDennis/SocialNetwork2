@@ -4,6 +4,7 @@ import s from "./EditableStatus.module.scss";
 type EditableStatusPropsType = {
     status: string;
     callback: (status: string) => void;
+    disable: boolean;
 };
 
 export const EditableStatus = (props: EditableStatusPropsType) => {
@@ -11,12 +12,14 @@ export const EditableStatus = (props: EditableStatusPropsType) => {
     const [editableMode, setEditableMode] = useState(true);
 
     const doubleClickHandler = () => {
-        setEditableMode(false);
+        props.disable && setEditableMode(false);
     };
+
     const onBlurHandler = (value: string) => {
         setEditableMode(true);
         props.callback(value);
     };
+
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value);
     };

@@ -1,3 +1,11 @@
+import notWorking from "../../../assets/not_work.jpg";
 export const Settings = () => {
-  return <div>Photo</div>;
+    return (
+        <div>
+            <img
+                src={notWorking}
+                alt=''
+            />
+        </div>
+    );
 };

@@ -1,0 +1,23 @@
+.messageWrapper {
+    margin: 25px;
+    display: flex;
+    gap: 15px;
+}
+.userName {
+    margin: 0 0 5px 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+.userAvatar {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.message {
+    width: 600px;
+    word-wrap: break-word;
+    // word-break: break-all;
+}

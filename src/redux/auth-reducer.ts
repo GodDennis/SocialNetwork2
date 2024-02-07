@@ -48,7 +48,29 @@ export const SetProfileAuthIDTC = () => async (dispatch: Dispatch) => {
     return res;
 };
 
-type authReducerStateType = {
+export const logingTC =
+    (data: { email: string; password: string }) => async (dispatch: Dispatch) => {
+        const res = await API.login({ ...data, rememberMe: true });
+        if (res.data.resultCode === 0) {
+            dispatch(SetIsAuthAC(true));
+        }
+    };
+
+export const deleteLoginTc = () => async (dispatch: Dispatch) => {
+    const res = await API.deleteLogin();
+    if (res.data.resultCode === 0) {
+        dispatch(SetIsAuthAC(false));
+        dispatch(
+            SetProfileAuthIDAC({
+                email: null,
+                id: 0,
+                login: null,
+            })
+        );
+    }
+};
+
+export type authReducerStateType = {
     email: string | null;
     id: number | null;
     login: string | null;

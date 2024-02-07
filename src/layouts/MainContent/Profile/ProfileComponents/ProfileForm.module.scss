@@ -1,19 +1,28 @@
 .formWrapper {
-  margin-bottom: 20px;
-  .createPost {
-    font-size: 20px;
     margin-bottom: 20px;
-  }
-  .flexWrapper {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    .postArea {
-      resize: none;
-      border: 1px solid black;
-      width: 80%;
-      border-radius: 15px;
-      padding: 10px;
+    margin-top: 20px;
+    .createPost {
+        font-size: 20px;
+        margin-bottom: 20px;
     }
-  }
+    .flexWrapper {
+        position: relative;
+        width: 550px;
+        .postArea {
+            resize: none;
+            border: 1px solid black;
+            width: 100%;
+            height: 56px;
+            line-height: 28px;
+            border-radius: 15px;
+            padding: 10px 10px;
+            overflow: hidden;
+        }
+    }
+    .BtnPosition {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(-5%, -50%);
+    }
 }

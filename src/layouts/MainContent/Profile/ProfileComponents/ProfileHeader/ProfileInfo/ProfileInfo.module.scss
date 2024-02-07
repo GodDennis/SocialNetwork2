@@ -9,6 +9,7 @@
     background-color: #fff;
     display: flex;
     flex-basis: 33.33%;
+    height: 137px;
 }
 .userProperty {
     display: flex;
@@ -55,7 +56,6 @@
         box-sizing: content-box;
         border-radius: 50%;
         border: 4px solid white;
-        // overflow: hidden;
         width: 150px;
         height: 150px;
     }
@@ -64,18 +64,23 @@
     flex-basis: 25%;
     display: flex;
     gap: 5px;
-    .btn {
-        height: 32px;
-        line-height: 32px;
-        // align-items: center;
-        color: rgb(52, 98, 151);
-        border-radius: 8px;
-        display: inline-block;
-        padding: 0 5px 0 5px;
-        font-size: 16px;
-        font-weight: 500;
-        text-wrap: nowrap;
-    }
+}
+.btn {
+    height: 40px;
+    line-height: 32px;
+    max-width: 200px;
+    width: 100%;
+    color: rgb(52, 98, 151);
+    border-radius: 8px;
+    display: inline-block;
+    padding: 0 5px 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+    text-wrap: nowrap;
+}
+.blue {
+    background-color: rgb(68, 123, 186);
+    color: #fff;
 }
 .personInfo {
     flex-basis: 60%;

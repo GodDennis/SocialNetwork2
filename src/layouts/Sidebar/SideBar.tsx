@@ -1,37 +1,37 @@
 import { useSelector } from "react-redux";
 import { ListItem } from "../../components/ListItem/ListItem";
 import s from "./SideBar.module.scss";
-import { RootStoreType } from "../../redux/redux";
+import { authIDSelector } from "../../selectors";
 
 export const SideBar = () => {
-    const userID = useSelector<RootStoreType, number | null>(state => state.auth.id);
+    const authID = useSelector(authIDSelector);
 
     return (
         <nav className={s.nav}>
             <ul>
                 <ListItem
-                    link={"/profile/" + userID}
-                    name='Profle'
+                    link={"/profile/" + authID}
+                    name='Профиль'
                     spriteID='profile'
                 />
                 <ListItem
                     link='/message'
-                    name='Message'
+                    name='Сообщения'
                     spriteID='messages'
                 />
                 <ListItem
                     link='/users'
-                    name='Users'
+                    name='Пользователи'
                     spriteID='users'
                 />
                 <ListItem
                     link='/music'
-                    name='Music'
+                    name='Музыка'
                     spriteID='music'
                 />
                 <ListItem
                     link='/photo'
-                    name='Photo'
+                    name='Галерея'
                     spriteID='photo'
                 />
             </ul>

@@ -1,0 +1,21 @@
+.wrapper {
+    padding: 5px 40px 5px 20px;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dce1e6;
+}
+.userName {
+    font-weight: 500;
+    cursor: pointer;
+}
+.userImg {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+}

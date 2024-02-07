@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authReducerStateType } from "../redux/auth-reducer";
 
 const instanse = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -11,12 +12,20 @@ export const API = {
         return instanse.get<ResponseUserType>(`users?page=${page}`);
     },
 
-    getProfileInfo(userID: string | undefined) {
+    getProfileInfo(userID: number | undefined) {
         return instanse.get<ResponseProfileInfoType>(`profile/${userID}`);
     },
 
     getAuth() {
         return instanse.get<ResponseAuth>("auth/me");
+    },
+
+    login(data: { email: string; password: string; rememberMe?: boolean }) {
+        return instanse.post<ResponseLoginType<{ userId: number }>>("auth/login", data);
+    },
+
+    deleteLogin() {
+        return instanse.delete<ResponseLoginType<{}>>("auth/login");
     },
 
     follow(userID: string | undefined) {
@@ -33,6 +42,68 @@ export const API = {
             status,
         });
     },
+    startDialog(userId: number) {
+        return instanse.put(`/dialogs/${userId}`);
+    },
+    getDialogsList() {
+        return instanse.get<ResponseDialogsType[]>(`dialogs`);
+    },
+    getDialog(userId: number, page: number) {
+        return instanse.get<ResponseMessagesType>(`dialogs/${userId}/messages`, {
+            params: { page, count: 15 },
+        });
+    },
+    sendMessage(userId: number, body: string) {
+        return instanse.post<ResponseSendedMessageType>(`dialogs/${userId}/messages`, {
+            body,
+        });
+    },
+    getMyMessages(messageId: number) {
+        return instanse.get(`dialogs/messages/${messageId}/viewed`);
+    },
+};
+
+export type ResponseSendedMessageType = {
+    data: { message: MessagesItemType };
+    fieldsErrors: string[];
+    messages: string[];
+    resultCode: number;
+};
+
+export type MessagesItemType = {
+    addedAt: Date;
+    body: string;
+    id: string;
+    recipientId: number;
+    senderId: number;
+    senderName: string;
+    translatedBody: null | string;
+    viewed: boolean;
+};
+
+export type ResponseMessagesType = {
+    items: MessagesItemType[];
+    totalCount: number;
+    error: null | string;
+};
+
+export type ResponseDialogsType = {
+    id: number;
+    userName: string;
+    hasNewMessages: boolean;
+    lastDialogActivityDate: Date;
+    lastUserActivityDate: Date;
+    newMessagesCount: number;
+    photos: {
+        small: null | string;
+        large: null | string;
+    };
+};
+
+export type ResponseLoginType<T> = {
+    resultCode: number;
+    messages: string[];
+    data: T;
 };
 
 export type ResponseStatusType<T> = {

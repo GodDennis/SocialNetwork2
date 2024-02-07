@@ -1,25 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState, useCallback, memo } from "react";
+import { useSelector } from "react-redux";
+import { useEffect, useCallback } from "react";
 import {
     cleanupAC,
-    followAC,
     followTC,
-    pushUsersAC,
     pushUsersTC,
     setFetchingStatusAC,
-    unFollowAC,
     unFollowTC,
-    userType,
 } from "../redux/users-reducer";
-
-import { RootStoreType, useAppDispatch } from "../redux/redux";
-import { API } from "../dal/api";
+import { useAppDispatch } from "../redux/redux";
+import { isFetchingSelector, pageSelector, usersSelector } from "../selectors";
 
 export const useUsers = () => {
     const dispatch = useAppDispatch();
-    const users = useSelector<RootStoreType, userType[]>(state => state.usersPage.items);
-    const page = useSelector<RootStoreType, number>(state => state.usersPage.pageNumber);
-    const isFetching = useSelector<RootStoreType, boolean>(state => state.usersPage.isFetching);
+    const users = useSelector(usersSelector);
+    const page = useSelector(pageSelector);
+    const isFetching = useSelector(isFetchingSelector);
 
     // получение пользовтелей из БД
     useEffect(() => {

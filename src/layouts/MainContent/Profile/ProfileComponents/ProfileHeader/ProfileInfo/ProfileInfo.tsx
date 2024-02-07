@@ -1,23 +1,22 @@
-import { RootStateOrAny, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import s from "./ProfileInfo.module.scss";
-import { RootStoreType, useAppDispatch } from "../../../../../../redux/redux";
-import { profileType } from "../../../../../../types";
+import { useAppDispatch } from "../../../../../../redux/redux";
 import photoNull from "../../../../../../assets/camera_200.png";
 import { EditableStatus } from "../../../../../../components/EditableStatus/EditableStatus";
-import { GetStatusTC, SetStatusTC } from "../../../../../../redux/profile-reducer";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { SetStatusTC } from "../../../../../../redux/profile-reducer";
+import { authIDSelector, profileSelector } from "../../../../../../selectors";
 
 export const ProfileInfo: React.FC = () => {
-    const profile = useSelector<RootStoreType, profileType>(state => state.profilePage.profileInfo);
+    const profile = useSelector(profileSelector);
+    const authID = useSelector(authIDSelector);
 
     const dispatch = useAppDispatch();
-    useEffect(() => {
-        profile.userId && dispatch(GetStatusTC(profile.userId));
-    }, [profile.userId]);
 
     const StatusHandler = (status: string) => {
-        dispatch(SetStatusTC(status));
+        if (authID === profile.userId) {
+            dispatch(SetStatusTC(status));
+        }
+        return;
     };
 
     return (
@@ -34,28 +33,47 @@ export const ProfileInfo: React.FC = () => {
                     <span className={s.name}>{profile.fullName}</span>
                 </div>
                 <div className={s.userProperty}>
-                    <div className={s.subWrapper}>
+                    <div
+                        className={s.subWrapper}
+                        title='статус изменяемый на двойной клик'>
+                        {profile.status && (
+                            <img
+                                className={s.icon}
+                                src='https://img.freepik.com/free-icon/exclamation_318-448523.jpg?t=st=1685792496~exp=1685793096~hmac=5334bc2345ebb16ae2611f39af274a6aab7318b57a3696a1e6231342f16244ee'
+                                alt=''
+                                width='20px'
+                            />
+                        )}
                         <EditableStatus
-                            // callback={() => {}}
+                            disable={authID === profile.userId}
                             callback={StatusHandler}
                             status={profile.status}
                         />
                     </div>
-                    <div className={s.subWrapper}>
-                        <img
-                            className={s.icon}
-                            src='https://img.freepik.com/free-icon/exclamation_318-448523.jpg?t=st=1685792496~exp=1685793096~hmac=5334bc2345ebb16ae2611f39af274a6aab7318b57a3696a1e6231342f16244ee'
-                            alt=''
-                            width='20px'
-                        />
-                        <span className={(s.info, s.text)}>Подробнее</span>
-                    </div>
                 </div>
             </div>
+
             <div className={s.headerActions}>
-                <button className={s.btn}>Редактировать профиль</button>
-                <button className={s.btn}>Еще</button>
+                {authID === profile.userId && (
+                    <>
+                        <button
+                            disabled
+                            title='disabled'
+                            className={s.btn}>
+                            Редактировать профиль
+                        </button>
+                        <button
+                            disabled
+                            title='disabled'
+                            className={s.btn}>
+                            Еще
+                        </button>
+                    </>
+                )}
             </div>
+            {authID !== profile.userId && (
+                <button className={s.btn + " " + s.blue}>Отправить сообщение</button>
+            )}
         </div>
     );
 };

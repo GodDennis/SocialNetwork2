@@ -1,20 +1,37 @@
+import { MessagesItemType, ResponseDialogsType } from "./dal/api";
+
 export type statePropsType = {
     messagePage: messagePagePropsType;
     profilePage: profilePagePropsType;
 };
 
+export type messageInfoType = { items: MessagesItemType[]; totalCount: number };
+
 export type messagePagePropsType = {
-    messageInfo: messageInfoPropsType[];
-    dialogsUsers: dialogsUsersPropsType[];
+    messageInfo: messageInfoType;
+    dialogsUsers: ResponseDialogsType[];
     newMessageText: string;
+    friendAvatar: string | null;
+    ownerAvatar: string | null;
+    friendName: string;
+    currentFriendId: null | string;
+    setScrollBarDown: boolean;
 };
 
-export type messageInfoPropsType = {
-    message: string;
-    id: string;
+export type messageItemsPropsType = {
+    firstMessageRef?: any;
+    message?: string;
+    id?: string;
+    src?: string;
+    userName?: string;
+    senderID?: number;
+    AuthId?: number | null;
+    friendAvatar?: string | null;
+    ownerPhoto?: string | null;
 };
+
 export type dialogsUsersPropsType = {
-    name: string;
+    userName: string;
     src: string;
     id: string;
 };

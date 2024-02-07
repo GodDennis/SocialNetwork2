@@ -30,3 +30,4 @@ type AppActionType =
 export type ThunkDispatchType = ThunkDispatch<RootStoreType, unknown, AppActionType>;
 
 export type ActionThunkType = ThunkAction<void, RootStoreType, unknown, AppActionType>;
+

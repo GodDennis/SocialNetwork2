@@ -2,6 +2,7 @@ import { v1 } from "uuid";
 import { profilePagePropsType, profileType } from "../types";
 import { Dispatch } from "redux";
 import { API } from "../dal/api";
+import { ThunkDispatchType } from "./redux";
 
 const profilePage = {
     profileInfo: {
@@ -28,7 +29,7 @@ const profilePage = {
             id: v1(),
             src: "https://sun9-75.userapi.com/impg/teTw8UF6zBSgt_IvJzVz-wvsKQwNWQupF25QUg/jl790zKnAaM.jpg?size=1200x1600&quality=96&sign=278ffd6e454d0a67972d1ef3387635be&type=album",
             fullName: "Dennis Podreckiy",
-            post: "Какой-то пост",
+            post: "К сажалению в API нет раздела постов, поэтому только обычный Redux",
             time: "TODO Time",
             like: 3,
         },
@@ -36,7 +37,7 @@ const profilePage = {
             id: v1(),
             src: "https://sun9-75.userapi.com/impg/teTw8UF6zBSgt_IvJzVz-wvsKQwNWQupF25QUg/jl790zKnAaM.jpg?size=1200x1600&quality=96&sign=278ffd6e454d0a67972d1ef3387635be&type=album",
             fullName: "Dennis Podreckiy",
-            post: "Какой-то пост 2",
+            post: "Так же в API защита от большого количества запросов, если выпадет лоудер, то обнови страницу через некоторое время <3",
             time: "TODO Time",
             like: 0,
         },
@@ -125,9 +126,10 @@ export const GetStatusAC = (status: string) => {
     } as const;
 };
 
-export const SetProfileTC = (userID: string) => async (dispatch: Dispatch) => {
+export const SetProfileTC = (userID: number) => async (dispatch: ThunkDispatchType) => {
     const res = await API.getProfileInfo(userID);
     dispatch(SetProfileInfoAC(res.data));
+    dispatch(GetStatusTC(userID));
 };
 export const SetStatusTC = (status: string) => async (dispatch: Dispatch) => {
     await API.setStatus(status);
