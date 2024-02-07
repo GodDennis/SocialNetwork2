@@ -16,6 +16,7 @@ export type messagePagePropsType = {
     friendName: string;
     currentFriendId: null | string;
     setScrollBarDown: boolean;
+    isAdded: boolean;
 };
 
 export type messageItemsPropsType = {

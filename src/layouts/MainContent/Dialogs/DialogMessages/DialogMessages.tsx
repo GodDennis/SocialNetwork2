@@ -23,6 +23,7 @@ export const DialogMessages = () => {
     const { id } = useParams();
 
     const dispatch = useAppDispatch();
+
     const newMessageTxt = useSelector(newMessageTxtSelector);
     const messageItems = useSelector(messageItemsSelector);
     const totalCount = useSelector(totalCountSelector);

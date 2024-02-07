@@ -28,3 +28,4 @@ export const DialogfriendName = (state: RootStoreType): string | null =>
     state.messagePage.friendName;
 export const setScrollBarDownSelector = (state: RootStoreType): boolean =>
     state.messagePage.setScrollBarDown;
+export const isAddedSelector = (state: RootStoreType): boolean => state.messagePage.isAdded;

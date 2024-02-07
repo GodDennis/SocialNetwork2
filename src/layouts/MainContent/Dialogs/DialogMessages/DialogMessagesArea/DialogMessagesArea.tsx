@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { MessagesItemType } from "../../../../../dal/api";
 import { DialogMessage } from "./DialogMessage/DialogMessage";
@@ -6,12 +6,17 @@ import s from "./DialogMessagesArea.module.scss";
 import {
     FriendAvatarSelector,
     authIDSelector,
+    isAddedSelector,
     ownerPhotoSelector,
     setScrollBarDownSelector,
 } from "../../../../../selectors";
-import { OwnerAvatarTC, setScrollBarDownAC } from "../../../../../redux/message-reducer";
+import {
+    OwnerAvatarTC,
+    SetIsAddedAC,
+    setScrollBarDownAC,
+} from "../../../../../redux/message-reducer";
 import { useAppDispatch } from "../../../../../redux/redux";
-import { useInView, InView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 type DialogMessagesArea = {
     totalPage: number;
@@ -22,6 +27,7 @@ type DialogMessagesArea = {
 };
 
 export const DialogMessagesArea = (props: DialogMessagesArea) => {
+    const isAdded = useSelector(isAddedSelector);
     const firstMessageRef = useRef<HTMLDivElement>(null);
     const divRef = useRef<HTMLDivElement>(null);
     const friendAvatar = useSelector(FriendAvatarSelector);
@@ -48,6 +54,10 @@ export const DialogMessagesArea = (props: DialogMessagesArea) => {
         if (props.messageItems.length > 0 && setScrollBarDown) {
             divRef.current?.scrollIntoView();
             dispatch(setScrollBarDownAC(false));
+        }
+        if (isAdded) {
+            divRef.current?.scrollIntoView();
+            dispatch(SetIsAddedAC(false));
         }
     }, [props.messageItems]);
 

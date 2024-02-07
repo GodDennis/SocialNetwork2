@@ -11,6 +11,7 @@ const messagePage = {
     ownerAvatar: null,
     friendName: "",
     setScrollBarDown: true,
+    isAdded: false,
 } as messagePagePropsType;
 
 export const meessageReducer = (
@@ -69,6 +70,9 @@ export const meessageReducer = (
         case "CLEAN-MESSAGE": {
             return { ...state, messageInfo: { items: [], totalCount: 0 } };
         }
+        case "SET-IS-ADDED": {
+            return { ...state, isAdded: action.value };
+        }
         default:
             return { ...state };
     }
@@ -83,7 +87,8 @@ export type MessageActionTypes =
     | UserNameFromUserMessageBar
     | CleanMessage
     | setScrollBarDown
-    | SetTotalCount;
+    | SetTotalCount
+    | SetIsAdded;
 
 type AddMessage = ReturnType<typeof SendMessageAC>;
 type SetDialogsList = ReturnType<typeof SetDialogsListAC>;
@@ -94,7 +99,14 @@ type OwnerAvatar = ReturnType<typeof OwnerAvatarAC>;
 type CleanMessage = ReturnType<typeof CleanMessageAC>;
 type setScrollBarDown = ReturnType<typeof setScrollBarDownAC>;
 type SetTotalCount = ReturnType<typeof SetTotalCountAC>;
+type SetIsAdded = ReturnType<typeof SetIsAddedAC>;
 
+export const SetIsAddedAC = (value: boolean) => {
+    return {
+        type: "SET-IS-ADDED",
+        value,
+    } as const;
+};
 export const SetDialogsListAC = (data: ResponseDialogsType[]) => {
     return {
         type: "SET-DIALOGS-LIST",

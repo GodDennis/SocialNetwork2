@@ -1,5 +1,9 @@
-import { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import s from "./AddMessageBar.module.scss";
+import { useSelector } from "react-redux";
+import { isAddedSelector } from "../../selectors";
+import { useAppDispatch } from "../../redux/redux";
+import { SetIsAddedAC } from "../../redux/message-reducer";
 
 type AddMessageBarPropsType = {
     type?: string;
@@ -10,11 +14,13 @@ type AddMessageBarPropsType = {
 };
 
 export const AddMessageBar = (props: AddMessageBarPropsType) => {
+    const dispatch = useAppDispatch();
     const [newMessage, setNewMessage] = useState<string>("");
 
     const onClickHandler = () => {
         props.add(newMessage);
         setNewMessage("");
+        dispatch(SetIsAddedAC(true));
     };
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
